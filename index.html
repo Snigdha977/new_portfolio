@@ -152,6 +152,57 @@ border-radius:50%;
 pointer-events:none;
 z-index:999;
 }
+
+/* ===== NEW PREMIUM LAYER (ADDED, NOTHING REMOVED) ===== */
+
+/* glow animation upgrade */
+.glow{
+background:linear-gradient(90deg,#fff,#00f7ff,#fff);
+background-size:200%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:shine 3s linear infinite;
+}
+@keyframes shine{
+0%{background-position:-200%;}
+100%{background-position:200%;}
+}
+
+/* section hover depth */
+.section:hover{
+transform:translateY(-10px) scale(1.01);
+box-shadow:0 0 30px rgba(0,247,255,0.2);
+}
+
+/* navbar glow on scroll */
+header.scrolled{
+box-shadow:0 0 20px rgba(0,247,255,0.4);
+}
+
+/* project shine sweep */
+.card{
+position:relative;
+overflow:hidden;
+}
+.card::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,#00f7ff,transparent);
+transition:0.6s;
+}
+.card:hover::before{
+left:100%;
+}
+
+/* animate skill bars */
+.bar div{
+width:0;
+transition:1.5s ease;
+}
 </style>
 
 </head>
@@ -280,6 +331,26 @@ const top=sec.getBoundingClientRect().top;
 if(top<window.innerHeight-100){
 sec.style.opacity=1;
 sec.style.transform="translateY(0)";
+}
+});
+});
+
+// NEW: navbar glow
+window.addEventListener("scroll",()=>{
+if(window.scrollY>50){
+document.querySelector("header").classList.add("scrolled");
+}else{
+document.querySelector("header").classList.remove("scrolled");
+}
+});
+
+// NEW: skill animation
+const skillBars=document.querySelectorAll(".bar div");
+window.addEventListener("scroll",()=>{
+skillBars.forEach(bar=>{
+const top=bar.getBoundingClientRect().top;
+if(top<window.innerHeight-50){
+bar.style.width=bar.getAttribute("style").replace("width:","");
 }
 });
 });
