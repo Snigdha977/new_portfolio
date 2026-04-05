@@ -257,18 +257,27 @@ Aspiring entrepreneur and AI full-stack developer passionate about building real
 Naari Udaan
 <img src="naari.jpg">
 <p>AI-powered financial inclusion platform empowering women through smart insights.</p>
+    <p> Tech stacks:
+    Frontend :HTML,CSS,Bootstrap , Tailwind , Js 
+        Backend : Python (Flask) 
+        Ml models: decision tree 
+        
+        
+    </p>
 </div>
 
 <div class="card">
 Finance bot 
 <img src="finance.jpg">
-<p>AI chatbot for managing and tracking personal finances.</p>
+<p>AI chatbot for managing and tracking personal finances.
+Tech Stack : Python Full stack 
+</p>
 </div>
 
 <div class="card">
 Ducklang 
 <img src="duck.jpg">
-<p>Custom experimental programming language project.</p>
+<p>Custom experimental programming language project based on python and python regex , lexer , interpreter , parser , compilor .</p>
 </div>
 
 <div class="card">
@@ -313,8 +322,89 @@ Link to all projects <a href="https://github.com/Snigdha977" target="_blank">Git
 </footer>
 
 <script>
-// (your JS remains unchanged)
+// typing
+const text=["AI Developer","Aspiring Entrepreneur ","Full Stack Engineer","Tech Creator"];
+let i=0,j=0,current="",del=false;
+
+function type(){
+current=text[i];
+document.querySelector(".typing").textContent=current.substring(0,j);
+
+if(!del && j<current.length){j++;setTimeout(type,100);}
+else if(del && j>0){j--;setTimeout(type,50);}
+else{
+del=!del;
+if(!del)i=(i+1)%text.length;
+setTimeout(type,1000);
+}
+}
+type();
+
+// scroll reveal
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+const top=sec.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+sec.style.opacity=1;
+sec.style.transform="translateY(0)";
+}
+});
+});
+
+// cursor
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.top=e.clientY+"px";
+cursor.style.left=e.clientX+"px";
+});
+
+// 3D cards
+document.querySelectorAll(".card").forEach(card=>{
+card.addEventListener("mousemove",(e)=>{
+let x=e.offsetX;
+let y=e.offsetY;
+let centerX=card.offsetWidth/2;
+let centerY=card.offsetHeight/2;
+
+let rotateX=(y-centerY)/10;
+let rotateY=(centerX-x)/10;
+
+card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+});
+card.addEventListener("mouseleave",()=>{
+card.style.transform="rotateX(0) rotateY(0) scale(1)";
+});
+});
+
+// PARTICLES
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#00f7ff";
+ctx.fill();
+p.y+=0.3;
+if(p.y>canvas.height)p.y=0;
+});
+requestAnimationFrame(animate);
+}
+animate();
 </script>
+
+
 
 </body>
 </html>
