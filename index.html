@@ -287,10 +287,11 @@ Ducklang
 </div>
 
 <div class="card">
-Link to all projects <a href="https://github.com/Snigdha977" target="_blank">GitHub</a>
+<h3>Want to know/unlock all then Visit My github </h3>
 
-<div class="github-btn">
-<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png">
+<div class="github-btn"> 
+<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+    <a href="https://github.com/Snigdha977" target="_blank">GitHub</a></img>
 <span>Explore All Projects</span>
 </div>
 
@@ -409,6 +410,12 @@ if(p.y>canvas.height)p.y=0;
 requestAnimationFrame(animate);
 }
 animate();
+// MAKE GITHUB BUTTON CLICKABLE (NO HTML CHANGE)
+document.querySelectorAll(".github-btn").forEach(btn=>{
+btn.addEventListener("click",()=>{
+window.open("https://github.com/Snigdha977","_blank");
+});
+});
 </script>
 
 
